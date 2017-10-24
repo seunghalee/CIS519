@@ -24,9 +24,9 @@ class featureExtraction:
         return len(X) * 1/fs
 
     def max(self,X):
-        return np.ndarray.max(axis=0)
+        return np.ndarray.max(X, axis=0)
 
     def min(self,X):
-        return np.ndarray.min(axis=0)
+        return np.ndarray.min(X, axis=0)
 
 
