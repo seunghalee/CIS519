@@ -9,14 +9,10 @@ import numpy as np
 
 class featureExtraction:
 
-    def __init__(self, X ,Y):
+    def __init__(self):
         '''
         Constructor
         '''
-
-        self.X = X  # raw accelerometer data
-        self.Y = Y  # gesture label
-
 
     def mean(self,X):
         return np.mean(X, axis=1)
@@ -27,12 +23,10 @@ class featureExtraction:
     def length(self, X, fs):
         return len(X) * 1/fs
 
+    def max(self,X):
+        return np.ndarray.max(axis=0)
 
+    def min(self,X):
+        return np.ndarray.min(axis=0)
 
-if __name__ == "__main__":
-
-    # load the data
-    filePath = "data/raw_accelerometer.dat"
-    file = open(filePath, 'r')
-    allData = np.loadtxt(file, delimiter=',')
 
