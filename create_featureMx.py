@@ -8,7 +8,7 @@ import os
 import glob
 import pandas as pd
 import numpy as np
-
+from statsmodels import robust
 
 def getpath(folder_name):
 
@@ -57,17 +57,20 @@ if __name__ == "__main__":
         else:
             label = int(f[18])
         labels.append(label)
-
+        
+        
         # ===================== features ===========================
         mean = np.mean(rep, axis=0)
         std = np.std(rep, axis=0)
         max_val = np.amax(rep, axis=0)
         min_val = np.amin(rep, axis=0)
         power = np.sum(np.power(rep,2), axis=0)/np.sum(np.power(rep,2))
+        median = np.median(rep,axis=0)
+        MAD = robust.mad(rep,axis = 0)
         # ==========================================================
 
-        features = np.array([mean, std, max_val, min_val, power]).ravel()
-
+        #features = np.array([median, std, max_val, min_val, power]).ravel()
+        features = np.array([median, std, max_val, min_val, power]).ravel()
         featuresMx.append(features)
 
     featuresMx = np.asarray(featuresMx)
